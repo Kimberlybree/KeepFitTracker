@@ -43,7 +43,7 @@ function App(props) {
       
 
             <Router> 
-              <Route exact path='/Home' 
+              <Route exact path='/Main' 
                 component={Main} />
 
                 <Route exact path='/login' 
