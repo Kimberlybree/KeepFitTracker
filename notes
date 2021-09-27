@@ -1,0 +1,119 @@
+   
+   
+function App(props) {
+
+
+    const keepfitItems = [
+        {
+            id: 1,
+            title: "Meditation",
+            goal_description: "10 minute Meditation Podcast",
+            goal_completed: true,
+        },
+        {
+            id: 2,
+            title: "Yoga",
+            goal_description: "30 min virtual yoga",
+            goal_completed: "False",
+        },
+        {
+            id: 3,
+            title: "Jog",
+            goal_description: "Jog to downtown and back",
+            goal_completed: "True",
+        },
+        {
+            id: 4,
+            title: "Walk Max",
+            goal_description: "Walk around block 5x per day",
+            goal_completed: "True",
+        },
+        {
+            id: 5,
+            title: "90 Minute Peloton Ride",
+            goal_description: "Group class Peloton ride",
+            goal_completed: "False",
+        },
+        {
+            id: 6,
+            title: "Healthy Grocery Shop",
+            goal_description: " ",
+            goal_completed: "True",
+        }
+    ];
+    
+        class App extends Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    viewGoal_completed: false,
+                    keepfitList: keepfitItems,
+          };
+            }
+    
+   
+   
+   
+   displayGoal_completed = (status) => {
+            if (status) { 
+                return this.setState({ viewGoal_completed: true });
+            }
+
+
+            return this.setState({ viewGoal_completed: false });
+        };
+
+        renderTabList = () => {
+            return(
+                <div className ="nav nav-tabs">
+                    <span 
+                    className={this.state.viewGoal_completed ? "nav-link active" : "nav-link"}
+                    onClick={() => this.displayGoal_completed(true)}
+                    >
+                        Goal Completed 
+                    </span>
+
+                    <span
+                    className={this.state.viewCompleted ? "nav-link" : "nav-link active"}
+                    onClick={() => this.displayGoal_completed(false)}
+                    >
+                        Goal Incomplete
+                    </span> 
+                </div>
+            );
+        };
+
+    renderItems = () => {
+        const { viewGoal_completed } = this.state;
+        const newItems = this.state.keepfitItems.filter(
+          (item) => item.completed == viewGoal_completed
+        );
+    
+        return newItems.map((item) => (
+          <li
+            key={item.id}
+            className="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <span
+              className={`keepfitapp-title mr-2 ${
+                this.state.viewGoal_completed ? "completed-todo" : ""
+              }`}
+              title={item.description}
+            >
+              {item.title}
+            </span>
+            <span>
+              <button
+                className="btn btn-secondary mr-2"
+              >
+                Edit
+              </button>
+              <button
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
+            </span>
+          </li>
+        ));
+      };
