@@ -6,9 +6,10 @@ import About from './Components/About';
 import login from './Components/login';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/NavBar'
-import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/NavBar';
+import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import GoalList from './Components/GoalList';
 
 
      
@@ -33,6 +34,7 @@ function App(props) {
                     <NavDropdown.Item href="/login">Login </NavDropdown.Item>
                     <NavDropdown.Item href="/about">About </NavDropdown.Item>
                     <NavDropdown.Item href="/FitnessTips">Fitness News</NavDropdown.Item>
+                    <NavDropdown.Item href="/GoalList">Goal Tracker</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/Main">Home</NavDropdown.Item>
                     </NavDropdown>
@@ -43,20 +45,25 @@ function App(props) {
       
 
             <Router> 
-              <Route exact path='/Main' 
+                <Route exact path='/Main' 
                 component={Main} />
 
                 <Route exact path='/login' 
                 component={login} />
 
-            <Route exact path='/About' 
-                component={About} />
+                <Route exact path='/About' 
+                    component={About} />
 
-            <Route exact path='/FitnessTips' 
-                component={FitnessTips} />
+                <Route exact path='/FitnessTips' 
+                    component={FitnessTips} />
+                
+
+                <Route exact path='/GoalList'
+                    component={GoalList} />
+
             </Router> 
-
-
+       
+       
         </header>
         </div>
 
