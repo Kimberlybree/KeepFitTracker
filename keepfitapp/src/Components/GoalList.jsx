@@ -1,193 +1,125 @@
-import React, { Component } from 'react';
+import React, { Component } from "react"
 import axios from 'axios';
+import Modal from './Modal';
 
-
-
-// const KeepFitItems = [
-//     {
-//       id: 1,
-//       title: "Peloton Bike Ride",
-//       description: "30 min Bike Ride",
-//       completed: true,
-//     },
-//     {
-//       id: 2,
-//       title: "Walk Dog",
-//       description: "4x around block",
-//       completed: false,
-//     },
-//     {
-//       id: 3,
-//       title: "Run downtown and back",
-//       description: "45 min jog to downtown",
-//       completed: true,
-//     },
-//     {
-//       id: 4,
-//       title: "Yoga",
-//       description: "30 min stretch",
-//       completed: false,
-//     },
-//   ];
-  
-  class GoalList extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        viewCompleted: false,
-        keepfitList: [],
-        modal: false,
+class GoalList extends Component {
+    state = {
+        goal_completed: false,
         activeItem: {
-          title: " ",
-          goal_description: " ",
-          completed: false,
+          title: "",
+          goal_description: "",
+          goal_completed: false
         },
-      };
-    }
-
-    componentDidMount() {
-      this.refreshList();
-    }
-  
-    refreshList = () => {
-      axios
-        .get("/api/GoalList/")
-        .then((res) => this.setState({ KeepFitList: res.data }))
-        .catch((err) => console.log(err));
+        KeepFitList: []
+    
     };
+  
+
+  async componentDidMount() {
+    try {
+      const res = await fetch('http://localhost:8000/api/keepfits/');
+      const KeepFitList = await res.json();
+      this.setState({
+        KeepFitList
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    }
 
     toggle = () => {
-      this.setState({ modal: !this.state.modal })
-    };
-
-    handleSubmit = (item) => {
+      this.setState({ modal: !this.state.modal });
+    };  
+    
+    handleSubmit = item => {
       this.toggle();
-
       if (item.id) {
-        axios
-          .put(`/api/keepfits/${item.id}/`, item)
-          .then((res) => this.refreshList());
+        axios 
+        .put(`https://localhost:8000/keepfits/${item.id}/`, item)
         return;
       }
       axios
-        .post("/api/keepfits/", item)
-        .then((res) => this.refreshList());
-    };
-  
-    handleDelete = (item) => {
-      axios
-        .delete(`/api/keepfits/${item.id}/`)
-        .then((res) => this.refreshList());
+      .post('http://localhost:8000/api/keepfits/', item)
     };
 
-  
     createItem = () => {
-      const item = { title: " ", goal_description: " ", completed: false };
-
-      this.setState({ activeItem: item, modal: !this.state.modal });
+      const item = {title: '', description: '', completed: false};
+      this.setState({ activeItem: item, moda: !this.state.modal });
     };
 
-    editItem = (item) => {
-      this.setState({ activeItem: item, modal: !this.state.modal});
-    }
-
-    displayCompleted = (status) => {
+    displayCompleted = status => {
       if (status) {
-        return this.setState({ viewCompleted: true });
+        return this.setState({ goal_completed: true });
       }
-  
-      return this.setState({ viewCompleted: false });
-    };
-  
+      return this.setState({ goal_completed: false });
+      };
+    
     renderTabList = () => {
       return (
-        <div className="nav nav-tabs">
-          <span
-            className={this.state.viewCompleted ? "nav-link active" : "nav-link"}
-            onClick={() => this.displayCompleted(true)}
+        <div className='my-5 tab-list'>
+          <button
+          onClick={() => this.displayCompleted(true)}
+          className={this.state.goal_completed ? 'active' : ''}
           >
             Complete
-          </span>
-          <span
-            className={this.state.viewCompleted ? "nav-link" : "nav-link active"}
-            onClick={() => this.displayCompleted(false)}
+          </button>
+
+          <button 
+          onClick={() => this.displayCompleted(false)}
+          className={this.state.goal_completed ? '' : 'active'}
           >
             Incomplete
-          </span>
+          </button>
         </div>
       );
     };
 
     renderItems = () => {
-      const { viewCompleted } = this.state;
-      const newItems = this.state.keepfitList.filter(
-        (item) => item.completed == viewCompleted
-      );
-  
-  
-      return newItems.map((item) => (
-        <li
-          key={item.id}
-          className="list-group-item d-flex justify-content-between align-items-center"
+      const { goal_completed } = this.state;
+      const newItems = this.state.KeepFitList.filter(
+        item => item.completed === goal_completed
+      ); 
+      return newItems.map(item => (
+        <li 
+        key={item.id}
+        className="list-group-item d-flex justify-content-between align-items-center"
         >
-          <span
+        <span 
             className={`todo-title mr-2 ${
-              this.state.viewCompleted ? "completed-todo" : ""
+              this.state.goal_completed ? "completed-todo" : ""
             }`}
-            title={item.description}
-          >
-            {item.title}
-          </span>
-          <span>
-            <button
-              className="btn btn-secondary mr-2"
-              onClick={() => this.editItem(item)}
+            title={item.goal_description}
             >
-              Edit
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={() => this.handleDelete(item)}
-            >
-              Delete
-            </button>
-          </span>
+              {item.title}
+            </span>
         </li>
-      ));
+      ))
     };
-  
+
     render() {
       return (
-        <main className="container">
-          <h1 className="text-white text-uppercase text-center my-4">Daily Goals</h1>
-          <div className="row">
-            <div className="col-md-6 col-sm-10 mx-auto p-0">
-              <div className="card p-3">
-                <div className="mb-4">
-                  <button
-                    className="btn btn-primary"
-                    onClick={this.createItem}
-                  >
-                    Add task
-                  </button>
-                </div>
-                {this.renderTabList()}
-                <ul className="list-group list-group-flush border-top-0">
-                  {this.renderItems()}
-                </ul>
-              </div>
+        <main className="content">
+        <div className="row">
+          <div className="col-md-6 col-sm-10 mx-auto p-0">
+            <div className="card p-3">
+              <ul className="list-group list-group-flush">
+              {this.renderItems()}
+              </ul>
             </div>
           </div>
-          {this.state.modal ? (
-          <modal
+        </div>
+        {this.state.modal ? (
+          <Modal
           activeItem={this.state.activeItem}
           toggle={this.toggle}
           onSave={this.handleSubmit}
           />
-          ) : null}
-        </main>
-      );
+        ): null} 
+      
+      </main>
+      )
     }
   }
+
   
-  export default GoalList;
+export default GoalList;

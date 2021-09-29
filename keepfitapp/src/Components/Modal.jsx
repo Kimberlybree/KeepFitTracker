@@ -11,7 +11,7 @@ Label, } from 'reactstrap';
 
 
 
-export default class Modal extends Component {
+export default class CustomModal extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -69,14 +69,13 @@ export default class Modal extends Component {
                     checked={this.state.activeItem.goal_completed}
                     onChange={this.handleChange}
                   />
-                  Completed
+                  Crushed it! 
                 </Label>
               </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button
-              color="success"
+            <Button color="success"
               onClick={() => onSave(this.state.activeItem)}
             >
               Save
@@ -84,6 +83,6 @@ export default class Modal extends Component {
           </ModalFooter>
         </Modal>
       );
+      }
     }
-  }
 
