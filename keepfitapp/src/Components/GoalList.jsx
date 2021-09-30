@@ -4,29 +4,28 @@ import Modal from './Modal';
 
 class GoalList extends Component {
     state = {
-        goal_completed: false,
-        activeItem: {
-          title: "",
-          goal_description: "",
-          goal_completed: false
-        },
-        KeepFitList: []
-    
-    };
-  
-
+      title: "",
+      goal_description: "",
+      goal_completed: false
+        }
+      
   async componentDidMount() {
     try {
       const res = await fetch('http://localhost:8000/api/keepfits/');
       const KeepFitList = await res.json();
+      console.log(KeepFitList)
       this.setState({
-        KeepFitList
+        title: KeepFitList[0].title,
+        goal_description: KeepFitList[1].goal_description,
+        goal_completed: false
       });
     } catch (e) {
       console.log(e);
     }
+    console.log(this.state.title)
     }
 
+      //map out array 
     toggle = () => {
       this.setState({ modal: !this.state.modal });
     };  
@@ -74,27 +73,27 @@ class GoalList extends Component {
       );
     };
 
-    renderItems = () => {
-      const { goal_completed } = this.state;
-      const newItems = this.state.KeepFitList.filter(
-        item => item.completed === goal_completed
-      ); 
-      return newItems.map(item => (
-        <li 
-        key={item.id}
-        className="list-group-item d-flex justify-content-between align-items-center"
-        >
-        <span 
-            className={`todo-title mr-2 ${
-              this.state.goal_completed ? "completed-todo" : ""
-            }`}
-            title={item.goal_description}
-            >
-              {item.title}
-            </span>
-        </li>
-      ))
-    };
+    // renderItems = () => {
+    //   const { goal_completed } = this.state;
+    //   const newItems = this.state.KeepFitList.filter(
+    //     item => item.completed === goal_completed
+    //   ); 
+    //   return newItems.map(item => (
+    //     <li 
+    //     key={item.id}
+    //     className="list-group-item d-flex justify-content-between align-items-center"
+    //     >
+    //     <span 
+    //         className={`todo-title mr-2 ${
+    //           this.state.goal_completed ? "completed-todo" : ""
+    //         }`}
+    //         title={item.goal_description}
+    //         >
+    //           {item.title}
+    //         </span>
+    //     </li>
+    //   ))
+    // };
 
     render() {
       return (
@@ -103,7 +102,9 @@ class GoalList extends Component {
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">
               <ul className="list-group list-group-flush">
-              {this.renderItems()}
+              {/* {this.renderItems()} */}
+              <li>{this.state.title}</li>
+
               </ul>
             </div>
           </div>
@@ -120,6 +121,7 @@ class GoalList extends Component {
       )
     }
   }
+
 
   
 export default GoalList;
