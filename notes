@@ -1,5 +1,17 @@
+import Modal from 'react-bootstrap/Modal';
+import ModalHeader from 'react-bootstrap/ModalHeader';
+import FormGroup from 'react-bootstrap/FormGroup';
+import Form from 'react-bootstrap/Form';
+import Label from 'react-bootstrap/FormLabel';
+import Button from 'react-bootstrap/Button';
+import ModalFooter from 'react-bootstrap/ModalFooter';
+import ModalBody from 'react-bootstrap/ModalBody';
+import Input from 'react-bootstrap/InputGroup';
+
    
-   
+
+
+
 function App(props) {
 
 
@@ -117,3 +129,85 @@ function App(props) {
           </li>
         ));
       };
+      ////
+
+
+      <Modal>
+        <ModalHeader>Goal Tracker</ModalHeader>
+        <ModalBody>
+          <Form>
+            <FormGroup>
+              <Label for="todo-title">Goal:</Label>
+              <Input 
+                type="text"
+                id="todo-title"
+                name="title"
+                // value={this.state.title}
+                // onChange={this.handleChange}  
+                placeholder="Enter Goal Here"
+              />
+            </FormGroup> 
+            <FormGroup>
+              <Label for="todo-description">Description</Label>
+              <Input
+                type="text"
+                id="todo-description"
+                name="description"
+                // value={this.state.activeItem.goal_description}
+                // onChange={this.handleChange}
+                placeholder="Enter description"
+              />
+            </FormGroup>
+            <FormGroup check>
+              <Label check>
+                <Input
+                  type="checkbox"
+                  name="completed"
+                  // checked={this.state.activeItem.goal_completed}
+                  // onChange={this.handleChange}
+                />
+                Completed
+              </Label>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color="success"
+            // onClick={() => onSave(this.state.activeItem)}
+          >
+            Save
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+        <div>
+            <Modal.Dialog>
+          <Modal.Header closeButton>
+            <Modal.Title>Goal Tracker</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+          <FormGroup>
+                <Label for="todo-title">Goal:</Label>
+                    <Input
+                        type="text"
+                        id="todo-title"
+                        name="title"
+                        value={item.title}
+                        onChange={this.handleChange}  
+                        placeholder="Enter Goal Here"
+                      />
+                    </FormGroup>
+            <p>Modal body text goes here.</p>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="secondary">Close</Button>
+            <Button variant="primary">Save changes</Button>
+          </Modal.Footer>
+        </Modal.Dialog>
+  
+     </div>
+    }
+    )

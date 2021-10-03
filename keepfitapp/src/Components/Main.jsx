@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
 
 function Main(props) {
@@ -16,7 +15,7 @@ function Main(props) {
       alt="First slide"
       />
     <Carousel.Caption>
-      <h3>First slide label</h3>
+      <h3>First Slide</h3>
       <p>Fitness Tips</p>
     </Carousel.Caption>
   </Carousel.Item>

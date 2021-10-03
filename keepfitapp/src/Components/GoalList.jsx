@@ -1,127 +1,61 @@
-import React, { Component } from "react"
-import axios from 'axios';
-import Modal from './Modal';
+import React, { useState, useEffect } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-class GoalList extends Component {
-    state = {
-      title: "",
-      goal_description: "",
-      goal_completed: false
-        }
-      
-  async componentDidMount() {
-    try {
-      const res = await fetch('http://localhost:8000/api/keepfits/');
-      const KeepFitList = await res.json();
-      console.log(KeepFitList)
-      this.setState({
-        title: KeepFitList[0].title,
-        goal_description: KeepFitList[1].goal_description,
-        goal_completed: false
-      });
-    } catch (e) {
-      console.log(e);
-    }
-    console.log(this.state.title)
-    }
+   
 
-      //map out array 
-    toggle = () => {
-      this.setState({ modal: !this.state.modal });
-    };  
+const GoalList = (props) => {
+  const [keepfits, setKeepFits] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:8000/api/keepfits/')
+    .then((res) => res.json())
+    .then(res => {
+      setKeepFits(res)
+      console.log(res)
+
+    })}, []);
+
+return (
+
+keepfits.map((item) => {
+
+
+return (
+
+  <div>
+     
+      {/* {item.title}
+      {item.goal_description} */}
     
-    handleSubmit = item => {
-      this.toggle();
-      if (item.id) {
-        axios 
-        .put(`https://localhost:8000/keepfits/${item.id}/`, item)
-        return;
-      }
-      axios
-      .post('http://localhost:8000/api/keepfits/', item)
-    };
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Goal Description</Form.Label>
+            <Form.Control type="email" placeholder="What is your goal?"
+            value={" "} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Goal Description</Form.Label>
+            <Form.Control type="password" placeholder="Describe your goal"
+            value={""}
+            />
+          </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+    </Form> 
 
-    createItem = () => {
-      const item = {title: '', description: '', completed: false};
-      this.setState({ activeItem: item, moda: !this.state.modal });
-    };
-
-    displayCompleted = status => {
-      if (status) {
-        return this.setState({ goal_completed: true });
-      }
-      return this.setState({ goal_completed: false });
-      };
-    
-    renderTabList = () => {
-      return (
-        <div className='my-5 tab-list'>
-          <button
-          onClick={() => this.displayCompleted(true)}
-          className={this.state.goal_completed ? 'active' : ''}
-          >
-            Complete
-          </button>
-
-          <button 
-          onClick={() => this.displayCompleted(false)}
-          className={this.state.goal_completed ? '' : 'active'}
-          >
-            Incomplete
-          </button>
-        </div>
-      );
-    };
-
-    // renderItems = () => {
-    //   const { goal_completed } = this.state;
-    //   const newItems = this.state.KeepFitList.filter(
-    //     item => item.completed === goal_completed
-    //   ); 
-    //   return newItems.map(item => (
-    //     <li 
-    //     key={item.id}
-    //     className="list-group-item d-flex justify-content-between align-items-center"
-    //     >
-    //     <span 
-    //         className={`todo-title mr-2 ${
-    //           this.state.goal_completed ? "completed-todo" : ""
-    //         }`}
-    //         title={item.goal_description}
-    //         >
-    //           {item.title}
-    //         </span>
-    //     </li>
-    //   ))
-    // };
-
-    render() {
-      return (
-        <main className="content">
-        <div className="row">
-          <div className="col-md-6 col-sm-10 mx-auto p-0">
-            <div className="card p-3">
-              <ul className="list-group list-group-flush">
-              {/* {this.renderItems()} */}
-              <li>{this.state.title}</li>
-
-              </ul>
-            </div>
-          </div>
-        </div>
-        {this.state.modal ? (
-          <Modal
-          activeItem={this.state.activeItem}
-          toggle={this.toggle}
-          onSave={this.handleSubmit}
-          />
-        ): null} 
-      
-      </main>
-      )
-    }
-  }
 
 
   
+
+ 
+
+  </div>
+  )
+}))
+}
 export default GoalList;
+
+

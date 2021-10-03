@@ -3,13 +3,13 @@ import './App.css';
 import FitnessTips from './Components/FitnessTips';
 import Main from './Components/Main';
 import About from './Components/About';
-import login from './Components/login';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/NavBar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import GoalList from './Components/GoalList';
+// import GoalList2 from './Components/GoalList2';
 
 
      
@@ -18,8 +18,7 @@ function App(props) {
 
     <div className="App">
         <header className="App-header">
-
-
+   
         <Navbar variant="dark" bg="dark" expand="lg">
         <Container fluid>
             <Navbar.Brand href="#home">Keep Fit Tracker</Navbar.Brand>
@@ -31,7 +30,6 @@ function App(props) {
                     title="Dropdown"
                     menuVariant="dark"
                     >
-                    <NavDropdown.Item href="/login">Login </NavDropdown.Item>
                     <NavDropdown.Item href="/about">About </NavDropdown.Item>
                     <NavDropdown.Item href="/FitnessTips">Fitness News</NavDropdown.Item>
                     <NavDropdown.Item href="/GoalList">Goal Tracker</NavDropdown.Item>
@@ -48,9 +46,6 @@ function App(props) {
                 <Route exact path='/Main' 
                 component={Main} />
 
-                <Route exact path='/login' 
-                component={login} />
-
                 <Route exact path='/About' 
                     component={About} />
 
@@ -62,12 +57,12 @@ function App(props) {
                     component={GoalList} />
 
             </Router> 
-       
-       
+
+
         </header>
         </div>
 
-  
+   
       )}
  
 export default App;

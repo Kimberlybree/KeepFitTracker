@@ -18,5 +18,14 @@ header {
 .aboutPage {
   font-size: 18px;
   margin: 4rem;
-  /* background-color: lavender; */
+  background-color: lavenderblush;
 } 
+.workoutVideo {
+  margin: 4rem;
+}
+form {
+  margin: 4rem;
+}
+.quotes {
+  margin: 4rem;
+}
