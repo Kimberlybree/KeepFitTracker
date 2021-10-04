@@ -3,7 +3,7 @@
 <h2>Project Idea</h2>
 <h3>KEEP-FIT APP</h3>
 
-The idea of the KEEP FIT App is to track your health and fitness goals and log your achievements along the way. It is a user-friendly way to keep motivated during a busy week. I plan to update this with more user functionality in the near future. 
+The idea of the KEEP FIT App is to track your health and fitness goals and log your achievements along the way. It is a user-friendly way to keep motivated during a busy week. 
 
 <h2>Tech Stack</h2>
 HTML </br>
