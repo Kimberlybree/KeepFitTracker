@@ -15,10 +15,10 @@ Django </br>
 
 
 <h3>User Stories</h3>
-- As the user, I want to fill out my own personal fitness data.
-- As the user, I would like to time my work out with a Stopwatch. 
-- As the user, I would like to access info on how to achieve my goals.
-- As the user, I would like to keep track of each daily workout/to do. 
+- As the user, I want to fill out my own personal fitness data. </br> 
+- As the user, I would like to time my work out with a Stopwatch. </br>
+- As the user, I would like to access info on how to achieve my goals. </br>
+- As the user, I would like to keep track of each daily workout/to do.  </br>
 
 
 
