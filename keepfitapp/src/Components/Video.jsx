@@ -17,19 +17,18 @@ function Video(props) {
                 onChange={handleChange}
                 value={searchString}
             />
-    
-                <button type="submit">Search</button>
+                
+            <button type="submit">Search</button>
         </form>
 
-        
-
+    
     
         <div className="workoutVideo">
             <iframe width="560" height="315" 
                 src="https://www.youtube.com/embed/ml6cT4AZdqI" 
                 title="YouTube video player" 
                 frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
             </iframe>
         
         </div>

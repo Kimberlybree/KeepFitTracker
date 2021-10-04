@@ -9,10 +9,7 @@ import Navbar from 'react-bootstrap/NavBar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import GoalList from './Components/GoalList';
-// import GoalList2 from './Components/GoalList2';
 
-
-     
 function App(props) {
  return (
 
