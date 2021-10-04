@@ -29,3 +29,6 @@ User stories
 - As the user, I would like to keep track of each daily workout/to do. 
 
 
+<img width="1440" alt="Screen Shot 2021-10-02 at 8 09 58 PM" src="https://user-images.githubusercontent.com/86509310/135791262-b0afdfd6-6061-43fd-84c9-892fcaa10a86.png">
+
+
