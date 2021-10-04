@@ -3,8 +3,6 @@
 <h2>Project Idea</h2>
 <h3>KEEP-FIT APP</h3>
 
-
-<h4>Brief 2-3 sentence description of your App</h4>
 The idea of the KEEP FIT App is to track your health and fitness goals and log your achievements along the way. It is a user-friendly way to keep motivated during a busy week. 
 
 <h2>Tech Stack</h2>
@@ -16,11 +14,6 @@ The idea of the KEEP FIT App is to track your health and fitness goals and log y
 - Django
 
 
-List of backend models and their properties
-
-
-
-React component hierarchy (if applicable)
 - User 
    - login info
    - personal health
