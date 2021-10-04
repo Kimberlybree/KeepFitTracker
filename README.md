@@ -13,7 +13,8 @@ React Bootstrap </br>
 Python </br>
 Django </br>
 
-User stories
+
+<h3>User Stories</h3>
 - As the user, I want to fill out my own personal fitness data.
 - As the user, I would like to time my work out with a Stopwatch. 
 - As the user, I would like to access info on how to achieve my goals.
