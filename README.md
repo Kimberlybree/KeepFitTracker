@@ -1,4 +1,4 @@
-# KeepFitTracker
+# KeepFitTracker - In Progress
 
 <h2>Project Idea</h2>
 <h3>KEEP-FIT APP</h3>
